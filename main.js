@@ -79,7 +79,16 @@ window.addEventListener('wheel', (event) => {
 function rotateMeshes() {
     rotation += speed;
     speed *= 0.9;
-    mesh1.rotation.x += speed;
+
+    mesh1.position.x = 2 + 3.8 * Math.cos(rotation);
+    mesh1.position.z = -3 + 3.8 * Math.sin(rotation);
+    mesh2.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI / 2);
+    mesh2.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI / 2);
+    mesh3.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI);
+    mesh3.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI);
+    mesh4.position.x = 2 + 3.8 * Math.cos(rotation + 3 * Math.PI / 2);
+    mesh4.position.z = -3 + 3.8 * Math.sin(rotation + 3 * Math.PI / 2);
+
     window.requestAnimationFrame(rotateMeshes);
 }
 
