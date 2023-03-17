@@ -69,6 +69,22 @@ window.addEventListener('resize', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio));
 });
 
+// ホイールでのアニメーション
+let speed = 0;
+let rotation = 0;
+window.addEventListener('wheel', (event) => {
+    speed += event.deltaY * 0.0002;
+});
+
+function rotateMeshes() {
+    rotation += speed;
+    speed *= 0.9;
+    mesh1.rotation.x += speed;
+    window.requestAnimationFrame(rotateMeshes);
+}
+
+rotateMeshes();
+
 // アニメーション
 const clock = new THREE.Clock();
 const animate = () => {
