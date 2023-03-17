@@ -28,7 +28,7 @@ const material = new THREE.MeshPhysicalMaterial({
     color: "#3c94d7",
     metalness: 0.86,
     roughness: 0.37,
-    flatShading: true
+    flatShading: true,
 });
 
 // メッシュ
@@ -47,5 +47,10 @@ mesh3.position.set(2, 0, -6);
 mesh4.position.set(5, 0, 3);
 
 scene.add(mesh1, mesh2, mesh3, mesh4);
+
+// ライト
+const directionalLight = new THREE.DirectionalLight('#ffffff', 4);
+directionalLight.position.set(0.5,1,0);
+scene.add(directionalLight);
 
 renderer.render(scene, camera);
