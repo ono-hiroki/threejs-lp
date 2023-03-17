@@ -54,6 +54,24 @@ mesh4.position.set(5, 0, 3);
 scene.add(mesh1, mesh2, mesh3, mesh4);
 const meshes = [mesh1, mesh2, mesh3, mesh4];
 
+// パーティクル
+const particleGeometry = new THREE.BufferGeometry();
+const particleCount = 700;
+const positionArray = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount * 3; i++) {
+    positionArray[i] = (Math.random() - 0.5) * 10;
+}
+particleGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
+
+const particleMaterial = new THREE.PointsMaterial({
+    size: 0.01,
+    sizeAttenuation: true,
+    color: '#ffffff',
+});
+
+const particles = new THREE.Points(particleGeometry, particleMaterial);
+scene.add(particles);
+
 // ライト
 const directionalLight = new THREE.DirectionalLight('#ffffff', 4);
 directionalLight.position.set(0.5,1,0);
@@ -120,8 +138,8 @@ const animate = () => {
     });
 
     // カメラの位置
-    camera.position.x = cursor.x * getDeltaTime * 10;
-    camera.position.y = -cursor.y * getDeltaTime * 10;
+    camera.position.x = cursor.x * getDeltaTime * 2;
+    camera.position.y = -cursor.y * getDeltaTime * 2;
 
     window.requestAnimationFrame(animate);
 };
