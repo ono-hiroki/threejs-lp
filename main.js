@@ -96,6 +96,16 @@ function rotateMeshes() {
 
 rotateMeshes();
 
+// カーソルの位置を取得
+const cursor = {
+    x: 0,
+    y: 0
+}
+window.addEventListener('mousemove', (event) => {
+    cursor.x = event.clientX / sizes.width - 0.5; // -0.5 ~ 0.5
+    cursor.y = event.clientY / sizes.height - 0.5;
+});
+
 // アニメーション
 const clock = new THREE.Clock();
 const animate = () => {
@@ -109,6 +119,9 @@ const animate = () => {
         mesh.rotation.y += 0.1 * getDeltaTime;
     });
 
+    // カメラの位置
+    camera.position.x = cursor.x * getDeltaTime * 10;
+    camera.position.y = -cursor.y * getDeltaTime * 10;
 
     window.requestAnimationFrame(animate);
 };
