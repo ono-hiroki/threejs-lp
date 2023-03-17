@@ -76,18 +76,20 @@ window.addEventListener('wheel', (event) => {
     speed += event.deltaY * 0.0002;
 });
 
+const r = 4;
+const origin = new THREE.Vector3(3.5, 0, -3);
 function rotateMeshes() {
     rotation += speed;
     speed *= 0.9;
 
-    mesh1.position.x = 2 + 3.8 * Math.cos(rotation);
-    mesh1.position.z = -3 + 3.8 * Math.sin(rotation);
-    mesh2.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI / 2);
-    mesh2.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI / 2);
-    mesh3.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI);
-    mesh3.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI);
-    mesh4.position.x = 2 + 3.8 * Math.cos(rotation + 3 * Math.PI / 2);
-    mesh4.position.z = -3 + 3.8 * Math.sin(rotation + 3 * Math.PI / 2);
+    mesh1.position.x = origin.x + r * Math.cos(rotation);
+    mesh1.position.z = origin.z + r * Math.sin(rotation);
+    mesh2.position.x = origin.x + r * Math.cos(rotation + Math.PI / 2);
+    mesh2.position.z = origin.z + r * Math.sin(rotation + Math.PI / 2);
+    mesh3.position.x = origin.x + r * Math.cos(rotation + Math.PI);
+    mesh3.position.z = origin.z + r * Math.sin(rotation + Math.PI * 1.5 / 2);
+    mesh4.position.x = origin.x + r * Math.cos(rotation + 3 / 2 * Math.PI);
+    mesh4.position.z = origin.z + r * Math.sin(rotation + 3 / 2 * Math.PI / 2);
 
     window.requestAnimationFrame(rotateMeshes);
 }
