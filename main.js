@@ -1,7 +1,8 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
 import * as THREE from 'three'
+import * as dat from 'lil-gui'
+
+const gui = new dat.GUI();
 
 const canvas = document.querySelector('canvas.webgl')
 
@@ -30,6 +31,10 @@ const material = new THREE.MeshPhysicalMaterial({
     roughness: 0.37,
     flatShading: true,
 });
+
+gui.addColor(material, 'color').name('color');
+gui.add(material, 'metalness').min(0).max(1).step(0.001).name('metalness');
+gui.add(material, 'roughness').min(0).max(1).step(0.001).name('roughness');
 
 // メッシュ
 const mesh1 = new THREE.Mesh(new THREE.TorusGeometry(1, 0.4, 16, 60,), material);
